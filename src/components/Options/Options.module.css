@@ -1,7 +1,0 @@
-.optionsList {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 5px;
-  padding: 0;
-}
