@@ -1,15 +1,15 @@
+import toast from "react-hot-toast";
 import css from "./SearchBar.module.css"
 import { IoMdSearch } from "react-icons/io";
 // import toast, {Toaster} from "react-hot-toast";
-
 
 
 const SearchBar = ({ onSubmit }) => {
   const onHandleSubmit = (event) => {
 		event.preventDefault();
 		const inputValue = event.currentTarget.elements.searchedPic.value;
-    inputValue === "" ? alert('please type something') : onSubmit(inputValue);
-    event.currentTarget.reset();
+    inputValue === "" ? toast.error("please write something") : onSubmit(inputValue);
+		
 	};
 	return (
 		<header className={css.header}>

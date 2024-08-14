@@ -1,19 +1,27 @@
+import css from './ImageGallery.module.css'
+import ImageCard from '../ImageCard/ImageCard'
 
 
-const ImageGallery = () => {
-  return (
-		<ul>
-			{/* Набір елементів списку із зображеннями */}
-			<li>
-				<div>
-					<img
-						src=''
-						alt=''
-					/>
-				</div>
-			</li>
+
+const ImageGallery = ({ pictures, handleClick }) => {
+	
+	return (
+		<ul className={css.list}>
+			{Array.isArray(pictures) &&
+				pictures.map((picture) => {
+					return (
+						<li key={picture.id} onClick={() => {
+							handleClick(picture.urls.regular);
+						}
+						}>
+							<ImageCard picture={picture}/>
+						</li>
+					);
+				})}
 		</ul>
 	);
 }
 
 export default ImageGallery
+
+
