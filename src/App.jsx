@@ -47,19 +47,19 @@ const App = () => {
 			try {
 				setLoading(true);
 				const response = await requestPicturesBySearchValue(searchedPic, pages);
-				if (response.data.results.length ===0) {
+				if (response.data.results.length === 0) {
 					toast.error("No matches, please change your request!");
 					return;
-					}
+				}
 				setPictures((prevPictures) => {
 					if (!Array.isArray(prevPictures)) {
-						setTotalPages(response.data.total);
+						
 						return response.data.results;
 					}
-					setError(null);
 					return [...prevPictures, ...response.data.results];
-
 				});
+				setTotalPages(response.data.total);
+				setError(null);
 			} catch (err) {
 				setError(true);
 			} finally {
@@ -68,7 +68,7 @@ const App = () => {
 			}
 		}
 		fetchImagesBySearchValue();
-	}, [searchedPic, pages, pictures]);
+	}, [searchedPic, pages]);
 
 	const onSubmit = (inputValue) => {
 		setSearchedPic(inputValue);
@@ -95,7 +95,7 @@ const App = () => {
 	return (
 		<div>
 			<SearchBar onSubmit={onSubmit} />
-			<Section>{loading && <Loader />}</Section>
+
 			<Toaster
 				position='top-center'
 				containerStyle={{
@@ -112,6 +112,7 @@ const App = () => {
 					handleClick={handleClick}
 				/>
 			</Section>
+			<Section>{loading && <Loader />}</Section>
 			{Array.isArray(pictures) && pictures.length && totalPages !== pages && (
 				<LoadMoreBtn onLoadingMore={onLoadingMore} />
 			)}

@@ -7,7 +7,7 @@ const ImageCard = ({picture}) => {
 				className={css.pic}
 				src={picture.urls.small}
 				alt={picture.alt_description}
-				id={picture.id}
+				
 			/>
 		</div>
 	);
